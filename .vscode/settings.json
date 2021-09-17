@@ -1,0 +1,8 @@
+{
+  "deno.enable": true,
+  "launch": {
+  
+    "configurations": [],
+    "compounds": []
+  }
+}
