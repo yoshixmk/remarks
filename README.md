@@ -34,5 +34,5 @@ if fail it, add `--no-check` option.
 
 ### VSCode
 
-Set your secret key using a `.faunarc` file for a project.  
+Set your secret key using a `.faunarc` file for a project.\
 https://github.com/fauna/vscode#1-set-your-secret-key

@@ -56,7 +56,7 @@ async function createRemark({
   return data;
 }
 
-async function getAllRemarks() {
+export async function getAllRemarks() {
   const query = `
     query {
       allRemarks {
