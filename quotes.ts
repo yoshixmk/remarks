@@ -22,13 +22,21 @@ const quotes = [
 
 async function handleQuotes(request: Request) {
   // Make sure the request is a GET request.
-  const { error } = await validateRequest(request, {
+  const { error, body } = await validateRequest(request, {
     GET: {},
+    POST: {
+      body: ["quote", "author"],
+    },
   });
-  // validateRequest populates the error if the request doesn't meet
-  // the schema we defined.
+
   if (error) {
     return json({ error: error.message }, { status: error.status });
+  }
+
+  if (request.method === "POST") {
+    const { quote, author } = body as { quote: string; author: string };
+    quotes.push({ quote, author });
+    return json({ quote, author }, { status: 201 });
   }
 
   // Return all the quotes.
