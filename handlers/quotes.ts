@@ -1,15 +1,7 @@
-import {
-  json,
-  serve,
-  validateRequest,
-} from "https://deno.land/x/sift@0.3.5/mod.ts";
-import { queryFauna } from "./queryFauna.ts";
+import { json, validateRequest } from "https://deno.land/x/sift@0.3.5/mod.ts";
+import { queryFauna } from "../queries/queryFauna.ts";
 
-serve({
-  "/quotes": handleQuotes,
-});
-
-async function handleQuotes(request: Request) {
+export async function handleQuotes(request: Request) {
   // Make sure the request is a GET request.
   const { error, body } = await validateRequest(request, {
     GET: {},

@@ -11,5 +11,6 @@ type Remark {
 type Query {
   # A new field in the Query operation to retrieve all quotes.
   allQuotes: [Quote!]
-  allRemark: [Remark!]
+  allRemarks: [Remark!]
+  countRemarks: Int!  @resolver(name: "countRemarks")
 }
