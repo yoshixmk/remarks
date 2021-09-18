@@ -56,11 +56,17 @@ async function createRemark({
   return data;
 }
 
+type RemarkResponse = {
+  _ts: number;
+  text: string;
+};
+
 export async function getAllRemarks() {
   const query = `
     query {
       allRemarks {
         data {
+          _ts
           text
         }
       },
@@ -70,14 +76,20 @@ export async function getAllRemarks() {
 
   const {
     data: {
-      allRemarks: { data: remarks },
+      allRemarks: { data: remarksResponse },
       countRemarks,
     },
     error,
-  } = await queryFauna(query, {});
+  } = await queryFauna(query, {}) as {
+    data: { allRemarks: { data: RemarkResponse[] }; countRemarks: number };
+    error: Error;
+  };
   if (error) {
     return { error };
   }
+  const remarks = remarksResponse.map((remark) =>
+    Object.assign(remark, { timestamp: new Date(remark._ts / 1000) })
+  );
 
   return { remarks, countRemarks };
 }

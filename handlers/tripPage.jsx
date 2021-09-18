@@ -41,16 +41,16 @@ export async function handleTripPage(request) {
           </a>
         </header>
         <main>
-          {entries.map((e) =>
-            (
-              <article>
-                <p><strong>{e.title.value}</strong></p>
-                <p>{e.updated.toDateString()}</p>
-                <p>{e.description.value}</p>
-                {/* <p>{JSON.stringify(e)}</p> */}
-              </article>
-            )
-          )}
+          {entries.map((e) => (
+            <article>
+              <p>
+                <strong>{e.title.value}</strong>
+              </p>
+              <p>{e.updated.toLocaleDateString('ja-JP')}</p>
+              <p>{e.description.value}</p>
+              {/* <p>{JSON.stringify(e)}</p> */}
+            </article>
+          ))}
         </main>
         <footer>
           <a href="/">Go back home!</a>
