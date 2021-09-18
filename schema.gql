@@ -1,0 +1,15 @@
+# We're creating a new type named `Quote` to represent a quote and its author.
+type Quote {
+  quote: String!
+  author: String!
+}
+
+type Remark {
+  text: String!
+}
+
+type Query {
+  # A new field in the Query operation to retrieve all quotes.
+  allQuotes: [Quote!]
+  allRemark: [Remark!]
+}

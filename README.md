@@ -15,7 +15,7 @@ $ deno install --allow-read --allow-write --allow-env --allow-net --allow-run --
 ```
 
 ```
-$ deployctl run --watch --libs=ns,fetchevent ./quotes.ts
+$ FAUNA_SECRET=<secret> deployctl run --watch --libs=ns,fetchevent ./quotes.ts
 ```
 
 if fail it, add `--no-check` option.

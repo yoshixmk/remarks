@@ -3,22 +3,11 @@ import {
   serve,
   validateRequest,
 } from "https://deno.land/x/sift@0.3.5/mod.ts";
+import { queryFauna } from "./queryFauna.ts";
 
 serve({
   "/quotes": handleQuotes,
 });
-
-// To get started, let's just use a global array of quotes.
-const quotes = [
-  {
-    quote: "Those who can imagine anything, can create the impossible.",
-    author: "Alan Turing",
-  },
-  {
-    quote: "Any sufficiently advanced technology is equivalent to magic.",
-    author: "Arthur C. Clarke",
-  },
-];
 
 async function handleQuotes(request: Request) {
   // Make sure the request is a GET request.
@@ -34,11 +23,71 @@ async function handleQuotes(request: Request) {
   }
 
   if (request.method === "POST") {
-    const { quote, author } = body as { quote: string; author: string };
-    quotes.push({ quote, author });
+    const { quote, author, error } = await createQuote(
+      body as { quote: string; author: string },
+    );
+    if (error) {
+      return json({ error: "couldn't create the quote" }, { status: 500 });
+    }
     return json({ quote, author }, { status: 201 });
   }
 
-  // Return all the quotes.
-  return json({ quotes });
+  // It's assumed that the request method is "GET".
+  {
+    const { quotes, error } = await getAllQuotes();
+    if (error) {
+      return json({ error: "couldn't fetch the quotes" }, { status: 500 });
+    }
+
+    // Return all the quotes.
+    return json({ quotes });
+  }
+}
+async function createQuote({
+  quote,
+  author,
+}: {
+  quote: string;
+  author: string;
+}): Promise<{ quote?: string; author?: string; error?: string }> {
+  const query = `
+      mutation($quote: String!, $author: String!) {
+        createQuote(data: { quote: $quote, author: $author }) {
+          quote
+          author
+        }
+      }
+    `;
+
+  const { data, error } = await queryFauna(query, { quote, author });
+  if (error) {
+    return { error };
+  }
+
+  return data;
+}
+
+async function getAllQuotes() {
+  const query = `
+    query {
+      allQuotes {
+        data {
+          quote
+          author
+        }
+      }
+    }
+  `;
+
+  const {
+    data: {
+      allQuotes: { data: quotes },
+    },
+    error,
+  } = await queryFauna(query, {});
+  if (error) {
+    return { error };
+  }
+
+  return { quotes };
 }
