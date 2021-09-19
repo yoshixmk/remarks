@@ -45,3 +45,4 @@ https://github.com/fauna/vscode#1-set-your-secret-key
 References
 
 - [Deno deploy tutorial-faunadb](https://deno.com/deploy/docs/tutorial-faunadb)
+- [Chrome拡張機能の作り方。誰でもかんたんに開発できる！](https://original-game.com/how-to-make-chrome-extensions/)

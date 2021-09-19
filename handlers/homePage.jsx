@@ -43,14 +43,17 @@ export async function handleHomePage(request) {
         </header>
         <main>
           <h1>
-            Now Count: <strong>{countRemarks}</strong>
+            Now 🗣 Count: <strong>{countRemarks}</strong>
           </h1>
           <hr />
           {remarks.map((r) => (
             <article>
               <h2>{r.text}</h2>
               <p>
-                <small>{r.timestamp.toLocaleDateString('ja-JP')} - {r.timestamp.toLocaleTimeString('ja-JP')}</small>
+                <small>
+                  {r.timestamp.toLocaleDateString("ja-JP")} -{" "}
+                  {r.timestamp.toLocaleTimeString("ja-JP")}
+                </small>
               </p>
             </article>
           ))}

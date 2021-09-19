@@ -46,7 +46,7 @@ export async function handleTripPage(request) {
               <p>
                 <strong>{e.title.value}</strong>
               </p>
-              <p>{e.updated.toLocaleDateString('ja-JP')}</p>
+              <p>{e.updated.toLocaleDateString("ja-JP")}</p>
               <p>{e.description.value}</p>
               {/* <p>{JSON.stringify(e)}</p> */}
             </article>
