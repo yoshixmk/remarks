@@ -7,8 +7,7 @@ import {
 import { getAllRemarks } from "./remarks.ts";
 import { style } from "./css.js";
 
-export async function handleHomePage(request) {
-  const { protocol, host, searchParams } = new URL(request.url);
+export async function handleHomePage() {
   const { remarks, countRemarks, error } = await getAllRemarks();
 
   if (error) {
@@ -46,15 +45,23 @@ export async function handleHomePage(request) {
             Now 🗣 Count: <strong>{countRemarks}</strong>
           </h1>
           <div>
-          {remarks.map((r) => (
-            <article>
-              <h2>{r.text}</h2>
-              <p>
-                <small>{r.timestamp.toLocaleDateString("ja-JP")}</small>
-                <small>{r.timestamp.toLocaleTimeString("ja-JP")}</small>
-              </p>
-            </article>
-          ))}
+            {remarks.map((r) => (
+              <article>
+                <h2>{r.text}</h2>
+                <p>
+                  <small>
+                    {r.timestamp.toLocaleDateString("ja-JP", {
+                      timeZone: "Asia/Tokyo",
+                    })}
+                  </small>
+                  <small>
+                    {r.timestamp.toLocaleTimeString("ja-JP", {
+                      timeZone: "Asia/Tokyo",
+                    })}
+                  </small>
+                </p>
+              </article>
+            ))}
           </div>
         </main>
         <footer>
