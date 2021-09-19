@@ -1,4 +1,4 @@
-async function postData(data = {}) {
+const postData = async (data) => {
   const url = "https://remarks.deno.dev/remarks";
   const response = await fetch(url, {
     method: "POST", // GET, POST, PUT, DELETE, etc.
@@ -12,12 +12,23 @@ async function postData(data = {}) {
     referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
     body: JSON.stringify(data),
   });
-  return await response.json();
-}
+  return response.json();
+};
 
 const buttons = Array.from(document.getElementsByTagName("button"));
 buttons.forEach((e) =>
   e.onclick = async () => {
-    await postData({ text: e.value });
+    try {
+      await postData({ text: e.value });
+      document.getElementById("success").classList.remove("is-hidden");
+    } catch (error) {
+      document.getElementById("error").classList.remove("is-hidden");
+      console.log(error);
+    } finally {
+      setTimeout(() => {
+        document.getElementById("success").classList.add("is-hidden");
+        document.getElementById("error").classList.add("is-hidden");
+      }, 3000);
+    }
   }
 );

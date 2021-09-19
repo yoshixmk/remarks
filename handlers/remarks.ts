@@ -2,7 +2,6 @@ import { json, validateRequest } from "https://deno.land/x/sift@0.3.5/mod.ts";
 import { queryFauna } from "../queries/queryFauna.ts";
 
 export async function handleRemarks(request: Request) {
-  // Make sure the request is a GET request.
   const { error, body } = await validateRequest(request, {
     GET: {},
     POST: {
@@ -53,7 +52,7 @@ async function createRemark({
     return { error };
   }
 
-  return data;
+  return data.createRemark;
 }
 
 type RemarkResponse = {
