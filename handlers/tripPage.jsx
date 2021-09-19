@@ -9,10 +9,8 @@ import { style } from "./css.js";
 
 import { parseFeed } from "https://deno.land/x/rss@0.5.3/mod.ts";
 
-export async function handleTripPage(request) {
-  const response = await fetch(
-    "https://gitpress.io/@yoshixmk/feed",
-  );
+export async function handleTripPage() {
+  const response = await fetch("https://gitpress.io/@yoshixmk/feed");
   const xml = await response.text();
   const { entries } = await parseFeed(xml);
 
@@ -27,7 +25,7 @@ export async function handleTripPage(request) {
       <body>
         <header>
           <a className="brand">
-            <strong>Remarks</strong>
+            <strong>Remarks Trip</strong>
           </a>
           <a
             a
@@ -40,14 +38,11 @@ export async function handleTripPage(request) {
             />
           </a>
         </header>
-        <main>
+        <main className="trip">
           {entries.map((e) => (
-            <article>
-              <p>
-                <strong>{e.title.value}</strong>
-              </p>
-              <p>{e.updated.toLocaleDateString("ja-JP")}</p>
-              <p>{e.description.value}</p>
+            <article className="blog">
+              <a href={e.id} target="_blank"><strong>{e.title.value}</strong></a><br/>
+              <p><small>{e.description.value} {e.id.split(/.+\//).pop()}</small></p>
               {/* <p>{JSON.stringify(e)}</p> */}
             </article>
           ))}

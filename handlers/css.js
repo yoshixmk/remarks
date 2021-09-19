@@ -26,7 +26,9 @@ main {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  padding-bottom: 8em;
+}
+main.trip {
+  align-items: initial;
 }
 main div {
   overflow: scroll;
@@ -36,6 +38,10 @@ article {
   padding: 4px 0;
   text-align: right;
 }
+article.blog {
+  padding: 4px 20vh;
+  text-align: left;
+}
 article h2 {
   display: inline;
   font-size: 1em;
@@ -43,10 +49,10 @@ article h2 {
 article p {
   display: inline;
   vertical-align: text-bottom;
-  margin-left: 8px;
+  margin: 4px;
 }
 article p small {
-  margin-left: 8px;
+  margin: 4px;
 }
 .link {
   display: flex;
