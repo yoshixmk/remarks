@@ -1,8 +1,7 @@
-# GitPress
+# Remarks
 
-Fork me to start using [GitPress](https://gitpress.io)
-
-Posts are placed in `/source` folder, so fill the directory with `/source`
+Measure the number of times that I have spoken, and publish it.  
+In addition, my travelogue in China.
 
 ## Architecture
 
@@ -25,19 +24,42 @@ $ curl -fsSL https://deno.land/x/install/install.sh | sh
 $ deno install --allow-read --allow-write --allow-env --allow-net --allow-run --no-check -f https://deno.land/x/deploy/deployctl.ts
 ```
 
-## Deploy
+## Run Server and Deploy
+
+Open Fauna's Security dashborad, get new key.  
+Execute as below:
 
 ```
 $ FAUNA_SECRET=<secret> deployctl run --watch --libs=ns,fetchevent ./server.ts
 ```
 
-if fail it, add `--no-check` option.
+All that is left is deploying on Deno Deploy.  
+https://dash.deno.com/new
+
+## GitPress
+
+Hosting on [GitPress](https://gitpress.io), and reading rss feed.
+
+Posts are placed in `/source` folder, so fill the directory with `/source`
+
+## Chrome Extension
+
+Post a request for what I said using it.
+
+### Installation
+
+1. Access to [chrome://extensions/](chrome://extensions/)
+1. Click "LOAD UNPAKED"
+1. Select `/chrome-extension` dir.
+
+If fail it, add `--no-check` option.
 
 ## Local Develepment
 
 ### VSCode
 
-Set your secret key using a `.faunarc` file for a project.\
+- [Recommendations](/.vscode/extensions.json)
+- Set your secret key using a `.faunarc` file for a project.\
 https://github.com/fauna/vscode#1-set-your-secret-key
 
 ## Step by step
