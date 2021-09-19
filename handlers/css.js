@@ -28,32 +28,25 @@ main {
   flex-direction: column;
   padding-bottom: 8em;
 }
+main div {
+  overflow: scroll;
+  max-height: 48vh;
+}
 article {
-  padding: 0 20vh;
-  width: 100vh;
+  padding: 4px 0;
+  text-align: right;
 }
-form {
-  display: flex;
-  justify-content: center;
-  margin-block-end: 0;
+article h2 {
+  display: inline;
+  font-size: 1em;
 }
-form input {
-  font-size: 1.5rem;
-  border: 0.2em black solid;
-  border-radius: 0.4em;
-  padding: 0.5rem;
-  width: 20em;
-  background-color: transparent;
+article p {
+  display: inline;
+  vertical-align: text-bottom;
+  margin-left: 8px;
 }
-form input:focus {
-  outline: none;
-}
-form button[type="submit"] {
-  font-size: 1.5em;
-  border: 0.2em black solid;
-  border-radius: 0.4em;
-  margin-left: 0.4em;
-  background-color: transparent;
+article p small {
+  margin-left: 8px;
 }
 .link {
   display: flex;
@@ -65,30 +58,12 @@ form button[type="submit"] {
   border-radius: 0.4em;
   background-color: transparent;
 }
-#clipboard {
-  padding: 0;
-  margin-left: 1em;
-  background-color: transparent;
-  border-style: none;
-}
 @media all and (max-width: 40em) {
   .brand {
     font-size: 1.4em;
   }
   header {
     width: 94vw;
-  }
-  form {
-    flex-direction: column;
-  }
-  form input {
-    width: 12.5em;
-  }
-  form button[type="submit"] {
-    margin: 0.4em 0 0 0;
-  }
-  .link {
-    font-size: 1.2em;
   }
   footer {
     font-size: small;

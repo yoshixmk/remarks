@@ -86,9 +86,11 @@ export async function getAllRemarks() {
   if (error) {
     return { error };
   }
-  const remarks = remarksResponse.map((remark) =>
-    Object.assign(remark, { timestamp: new Date(remark._ts / 1000) })
-  );
+  const remarks = remarksResponse
+    .sort((a, b) => b._ts - a._ts)
+    .map((remark) =>
+      Object.assign(remark, { timestamp: new Date(remark._ts / 1000) })
+    );
 
   return { remarks, countRemarks };
 }

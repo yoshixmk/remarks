@@ -18,7 +18,7 @@ export async function handleHomePage(request) {
   }
 
   return jsx(
-    <html lang="en">
+    <html lang="ja">
       <head>
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width" />
@@ -45,18 +45,17 @@ export async function handleHomePage(request) {
           <h1>
             Now 🗣 Count: <strong>{countRemarks}</strong>
           </h1>
-          <hr />
+          <div>
           {remarks.map((r) => (
             <article>
               <h2>{r.text}</h2>
               <p>
-                <small>
-                  {r.timestamp.toLocaleDateString("ja-JP")} -{" "}
-                  {r.timestamp.toLocaleTimeString("ja-JP")}
-                </small>
+                <small>{r.timestamp.toLocaleDateString("ja-JP")}</small>
+                <small>{r.timestamp.toLocaleTimeString("ja-JP")}</small>
               </p>
             </article>
           ))}
+          </div>
         </main>
         <footer>
           <a href="/trip">Have a nice trip!</a>
